@@ -1,0 +1,16 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+.signup-form td:first-child {
+  padding-right: 5px;
+  text-align: right;
+}
+.signup-form input[type="number"] {
+  width: 4em;
+}
+.signup-form button {
+  width: 75%;
+  cursor: pointer;
+  margin-top: 5px;
+}

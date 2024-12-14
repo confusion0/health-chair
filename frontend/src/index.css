@@ -1,0 +1,41 @@
+body {
+  background: #f8bcbc;
+  padding: 0;
+  margin: 0;
+}
+#root {
+  padding: 0;
+  margin: 0;
+  /* position: absolute; */
+  /* width: 100%; */
+  /* top: -22px; */
+}
+
+section {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section h2 {
+  font-size: 2em;
+  margin: 10px 0;
+}
+section p {
+  margin: 5px 0;
+  font-size: 1.1em;
+}
+
+.buttonlike-link {
+  text-decoration: none;
+  color: white;
+  border-radius: 20px;
+  background: #426B1F;
+  transition: filter 0.2s;
+  font-size: 1.2em;
+  padding: 10px 15px;
+  margin-top: 15px;
+}
+.buttonlike-link:hover {
+  filter: brightness(0.9);
+}
