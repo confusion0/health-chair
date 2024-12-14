@@ -1,3 +1,3 @@
-# Hack-a-Thon Sigmas
+# HealthChair
 
-A hackathon project.
+A hackathon project involving efficient health care availability
