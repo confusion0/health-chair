@@ -48,13 +48,15 @@ header li a:hover {
 }
 header li:last-child {
   margin-right: 0;
+}
+header li.flourish {
   border-radius: 10px;
   background: #426B1F;
   transition: filter 0.2s;
 }
-header li:last-child a {
+header li.flourish a {
   color: white;
 }
-header li:last-child:hover {
+header li.flourish:hover {
   filter: brightness(0.9);
 }

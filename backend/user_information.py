@@ -1,7 +1,7 @@
+from __future__ import annotations
 import mysql.connector as connector
 import os
 from dotenv import load_dotenv
-from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import List
@@ -15,10 +15,10 @@ db = connector.connect(
     username="root",
     password=database_password,
     port=8282,
-    database="hackathonsigmas"
+    database="hackathon"
 )
 
-@dataclass
+@dataclass(kw_only=True)
 class Patient:
     uid: int
     email: str
@@ -31,44 +31,27 @@ class Patient:
     blood_sugar: int
     medical_conditions: List[str]
     symptoms: List[str]
-
-    def __post_init__(self):  # operations done after initialization
-        ...
-
-    def store_to_db():
-        """
-        Saves this object's user data to the database.
-        """
-        return False
-        cursor = db.cursor()
-        sql = """
-        UPDATE userreal SET (sex, birth_year, weight, height, heart_rate, blood_sugar, medical_conditions, symptoms)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-        """
-        
-        
+    
     def retrieve_data(self):
         """returns the relevant health advice for the current pateint"""
         return (f"{self.sex=}, {self.birth_year=}, {self.weight=}, {self.height=}, {self.heart_rate=}, " +
                 f"{self.blood_sugar=}, {self.medical_conditions=}, {self.symptoms=}")
 
-    @staticmethod
-    def get_from_db(uid: int) -> UserClass:
-        cursor = db.cursor()
-        cursor.execute("""
-            SELECT email, name, sex, birth_year, weight, height, heart_rase, blood_sugar
-            FROM userreal WHERE id = %d
-        """, (uid,))
-        all = cursor.fetchall()
-        if len(all) > 1:
-            raise Exception("Should never happen!")
-        elif len(all) == 0:
-            return None
-        
-        res = all[0]
-        return UserClass(
-            uid, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7], [], []
-        )
+    def to_dict(self):
+        return {
+            "id": self.uid,
+            "email": self.email,
+            "name": self.name,
+            "sex": self.sex,
+            "birthYear": self.birth_year,
+            "weight": self.weight,
+            "height": self.height,
+            "bloodSugar": self.blood_sugar,
+            "medicalConditions": self.medical_conditions,
+            "symptoms": self.symptoms
+        }
+
 
 if __name__ == "__main__":
-    test_user = UserClass(sex="M", birth_year=2000, weight=40, height=170, heart_rate=60, blood_sugar=10, medical_conditions=["diabetes"],symptoms=["fever"])
+    # test_user = Patient(sex="M", birth_year=2000, weight=40, height=170, heart_rate=60, blood_sugar=10, medical_conditions=["diabetes"],symptoms=["fever"])
+    print(Patient.get_from_db(33))

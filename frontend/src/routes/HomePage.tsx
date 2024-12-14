@@ -13,7 +13,7 @@ export default function HomePage() {
         <p>
           Leverage the power of AI to create effective routines for managing your well-being.
         </p>
-        <Link to="/signup" className="buttonlike-link">Get started today</Link>
+        <Link to="/sign-up" className="buttonlike-link">Get started today</Link>
       </section>
     </>
   );

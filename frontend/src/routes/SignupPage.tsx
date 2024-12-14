@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SiteHeader from '../components/SiteHeader.tsx';
 
-import '../styles/SignupPage.css';
+import '../styles/LoginAndSignupPages.css';
+import AuthTokenContext from '../AuthTokenContext.tsx';
 
 export default function SignupPage() {
   const navigate = useNavigate();
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
+  
   const [ errorMsg, setErrorMsg ] = useState("");
+  const { setToken } = useContext(AuthTokenContext);
   
   function runSignup() {
     fetch('http://localhost:1234/signup', {
@@ -23,7 +26,8 @@ export default function SignupPage() {
       .then(data => {
         console.log(data)
         if(data.ok) {
-          navigate('/edit-data');
+          setToken(data.body.access_token);
+          navigate('/');
         } else {
           setErrorMsg(data.body.res);
         }
@@ -36,7 +40,7 @@ export default function SignupPage() {
       <SiteHeader />
       <section>
         <h2>Sign Up</h2>
-        { errorMsg && <p>{errorMsg}</p> }
+        { errorMsg && <p>{JSON.stringify(errorMsg)}</p> }
         <div className="signup-form">
           <table>
             <tbody>
