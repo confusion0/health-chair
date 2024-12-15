@@ -283,6 +283,8 @@ def edit_data_route():
                 symptoms = %s
             WHERE id = %s
         """, (*field_values, user_id))
+        for _ in cursor:
+            pass
         
         db.commit()
         
